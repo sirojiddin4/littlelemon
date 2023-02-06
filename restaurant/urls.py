@@ -1,6 +1,6 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
-
+from rest_framework.authtoken import views
 
 urlpatterns = [
     path('', views.home, name="home"),
@@ -14,4 +14,7 @@ urlpatterns = [
     path('logout/', views.logoutUser, name='logout'),
     path('register/', views.registerUser, name='register'),
     path('api/reservations', views.reservations),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.authtoken')),
+     path('api-token-auth/', views.obtain_auth_token),
 ]
